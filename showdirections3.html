@@ -1,0 +1,38 @@
+<?php
+$place=$_POST["place"];
+
+$Sql = "SELECT * FROM coordinates where userid=1 and place='$place' ";
+
+
+	if(mysqli_query($connection, $sql1))
+	{
+	$latitude=$row["latitude"];
+	$longitude=$row["longitude"];
+	?>
+	   <!DOCTYPE html>
+<html>
+<body>
+
+<h1>Google Maps</h1>
+
+<iframe
+  width="600"
+  height="450"
+  frameborder="0" style="border:0"
+  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCdBJJFs56f9r9gMMKeWKtM2UVPVu-lwCU
+    &q=<?php$latitude.','.$longitude?>" allowfullscreen>
+</iframe>
+
+
+</body>
+</html>
+   <?php	
+  	 
+	} 
+	else
+	{
+		echo "ERROR: Could not able to execute $sql. " . mysqli_error($connection);
+		 mysqli_close($connection);
+	}
+
+?>
